@@ -1,0 +1,50 @@
+name: emo
+description: "A new Flutter project."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.7.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  flutter_blue_plus: ^1.35.5
+  permission_handler: ^11.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+  flutter_launcher_icons: ^0.13.1
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/Logo_Telkom.png
+    - assets/images/WP1.png
+    - assets/images/back.png
+    - assets/images/home.png
+    - assets/images/arrow_down.png
+    - assets/images/arrow_up.png
+    - assets/images/arrow_left.png
+    - assets/images/arrow_right.png
+    - assets/images/bt_forward.png
+    - assets/images/bt_forward2.png
+    - assets/images/bt_light.png
+    - assets/images/bt_lu.png
+    - assets/images/bt_ru.png
+    - assets/images/bt_music.png
+    - assets/images/Logo_CC.png
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Regular.ttf
+        - asset: assets/fonts/Poppins-Bold.ttf
+          weight: 700
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/Logo_CC.png"
