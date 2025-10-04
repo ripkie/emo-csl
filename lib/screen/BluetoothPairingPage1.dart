@@ -4,6 +4,8 @@ import 'package:permission_handler/permission_handler.dart';
 import 'ChooseMode.dart';
 
 class BluetoothPage extends StatefulWidget {
+  const BluetoothPage({super.key});
+
   @override
   _BluetoothPageState createState() => _BluetoothPageState();
 }
@@ -37,7 +39,8 @@ class _BluetoothPageState extends State<BluetoothPage> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
-              "Izin Bluetooth dan lokasi diperlukan untuk menggunakan aplikasi"),
+            "Izin Bluetooth dan lokasi diperlukan untuk menggunakan aplikasi",
+          ),
         ),
       );
     }
@@ -48,16 +51,17 @@ class _BluetoothPageState extends State<BluetoothPage> {
     final mac = macAddressController.text.toLowerCase();
     final uuid = uuidController.text.toLowerCase();
 
-    List<ScanResult> filtered = discoveredDevices.where((result) {
-      final device = result.device;
-      final name = result.advertisementData.localName.toLowerCase();
-      final address = device.remoteId.str.toLowerCase();
-      final deviceUuid = device.remoteId.str.toLowerCase();
+    List<ScanResult> filtered =
+        discoveredDevices.where((result) {
+          final device = result.device;
+          final name = result.advertisementData.localName.toLowerCase();
+          final address = device.remoteId.str.toLowerCase();
+          final deviceUuid = device.remoteId.str.toLowerCase();
 
-      return name.contains(identity) ||
-          address.contains(mac) ||
-          deviceUuid.contains(uuid);
-    }).toList();
+          return name.contains(identity) ||
+              address.contains(mac) ||
+              deviceUuid.contains(uuid);
+        }).toList();
 
     setState(() {
       displayDevices = filtered;
@@ -79,7 +83,8 @@ class _BluetoothPageState extends State<BluetoothPage> {
     FlutterBluePlus.scanResults.listen((results) {
       for (ScanResult r in results) {
         if (!discoveredDevices.any(
-            (d) => d.device.remoteId == r.device.remoteId)) {
+          (d) => d.device.remoteId == r.device.remoteId,
+        )) {
           setState(() {
             discoveredDevices.add(r);
             displayDevices = discoveredDevices;
@@ -104,8 +109,7 @@ class _BluetoothPageState extends State<BluetoothPage> {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) =>
-              ChooseModePage(deviceName: device.platformName),
+          builder: (context) => ChooseModePage(deviceName: device.platformName),
         ),
       );
     } catch (e) {
@@ -177,8 +181,10 @@ class _BluetoothPageState extends State<BluetoothPage> {
                         child: ElevatedButton.icon(
                           onPressed: searchDevices,
                           icon: Icon(Icons.search, color: Color(0xFFEFCB13)),
-                          label: Text("CARI",
-                              style: TextStyle(color: Color(0xFFCEE6F2))),
+                          label: Text(
+                            "CARI",
+                            style: TextStyle(color: Color(0xFFCEE6F2)),
+                          ),
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Color(0xFF770606),
                           ),
@@ -198,10 +204,12 @@ class _BluetoothPageState extends State<BluetoothPage> {
                         width: buttonWidth,
                         child: ElevatedButton(
                           onPressed: scanDevices,
-                          child: Text("PINDAI SEKARANG",
-                              style: TextStyle(color: Color(0xFFCEE6F2))),
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Color(0xFF770606),
+                          ),
+                          child: Text(
+                            "PINDAI SEKARANG",
+                            style: TextStyle(color: Color(0xFFCEE6F2)),
                           ),
                         ),
                       ),
@@ -234,17 +242,17 @@ class _BluetoothPageState extends State<BluetoothPage> {
                       ),
                       trailing: ElevatedButton(
                         onPressed: () => connectToDevice(device),
-                        child: Text("Connect"),
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Color(0xFF770606),
                           foregroundColor: Color(0xFFCEE6F2),
                         ),
+                        child: Text("Connect"),
                       ),
                     ),
                   );
                 },
               ),
-            )
+            ),
           ],
         ),
       ),

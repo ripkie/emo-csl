@@ -5,22 +5,17 @@ import 'ModeGamepad.dart';
 class ChooseModePage extends StatelessWidget {
   final String deviceName;
 
-  const ChooseModePage({Key? key, required this.deviceName}) : super(key: key);
+  const ChooseModePage({super.key, required this.deviceName});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Pilih Mode'),
-      ),
+      appBar: AppBar(title: Text('Pilih Mode')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            Text(
-              'Terhubung ke perangkat:',
-              style: TextStyle(fontSize: 16),
-            ),
+            Text('Terhubung ke perangkat:', style: TextStyle(fontSize: 16)),
             SizedBox(height: 8),
             Text(
               deviceName,
@@ -38,7 +33,9 @@ class ChooseModePage extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => ModeClassicPage(deviceName: '')),
+                  MaterialPageRoute(
+                    builder: (context) => ModeClassicPage(deviceName: ''),
+                  ),
                 );
               },
               child: Row(
@@ -64,7 +61,9 @@ class ChooseModePage extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => ModeGamepadPage(deviceName: '')),
+                  MaterialPageRoute(
+                    builder: (context) => ModeGamepadPage(deviceName: ''),
+                  ),
                 );
               },
               child: Row(

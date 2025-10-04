@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'WelcomePage.dart';
 
 class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
+
   @override
   _SplashScreenState createState() => _SplashScreenState();
 }
@@ -31,16 +33,17 @@ class _SplashScreenState extends State<SplashScreen> {
         children: [
           const Spacer(),
           Center(
-            child: Container(
+            child: SizedBox(
               width: 200,
               height: 200,
               child: const Center(
                 child: Text(
                   "EMO",
                   style: TextStyle(
-                      fontSize: 84,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFFA31B1F)),
+                    fontSize: 84,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFFA31B1F),
+                  ),
                 ),
               ),
             ),
@@ -64,7 +67,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   width: 80,
                   fit: BoxFit.contain,
                 ),
-              ], 
+              ],
             ),
           ),
           const SizedBox(height: 80),

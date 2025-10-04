@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 class ModeGamepadPage extends StatelessWidget {
   final String deviceName;
 
-  ModeGamepadPage({Key? key, required this.deviceName}) : super(key: key);
+  const ModeGamepadPage({super.key, required this.deviceName});
 
   @override
   Widget build(BuildContext context) {
@@ -79,8 +79,7 @@ class ModeGamepadPage extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     GestureDetector(
-                                      onTap: () {
-                                      },
+                                      onTap: () {},
                                       child: Image.asset(
                                         'assets/images/arrow_up.png',
                                         width: buttonSize,
@@ -92,8 +91,7 @@ class ModeGamepadPage extends StatelessWidget {
                                           MainAxisAlignment.center,
                                       children: [
                                         GestureDetector(
-                                          onTap: () {
-                                          },
+                                          onTap: () {},
                                           child: Image.asset(
                                             'assets/images/arrow_left.png',
                                             width: buttonSize,
@@ -102,8 +100,7 @@ class ModeGamepadPage extends StatelessWidget {
                                         ),
                                         SizedBox(width: buttonSize),
                                         GestureDetector(
-                                          onTap: () {
-                                          },
+                                          onTap: () {},
                                           child: Image.asset(
                                             'assets/images/arrow_right.png',
                                             width: buttonSize,
@@ -113,8 +110,7 @@ class ModeGamepadPage extends StatelessWidget {
                                       ],
                                     ),
                                     GestureDetector(
-                                      onTap: () {
-                                      },
+                                      onTap: () {},
                                       child: Image.asset(
                                         'assets/images/arrow_down.png',
                                         width: buttonSize,
@@ -133,8 +129,7 @@ class ModeGamepadPage extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     GestureDetector(
-                                      onTap: () {
-                                      },
+                                      onTap: () {},
                                       child: Image.asset(
                                         'assets/images/bt_lu.png',
                                         width: buttonSize,
@@ -143,8 +138,7 @@ class ModeGamepadPage extends StatelessWidget {
                                     ),
                                     SizedBox(width: buttonSize),
                                     GestureDetector(
-                                      onTap: () {
-                                      },
+                                      onTap: () {},
                                       child: Image.asset(
                                         'assets/images/bt_ru.png',
                                         width: buttonSize,
@@ -154,8 +148,7 @@ class ModeGamepadPage extends StatelessWidget {
                                   ],
                                 ),
                                 GestureDetector(
-                                  onTap: () {
-                                  },
+                                  onTap: () {},
                                   child: Image.asset(
                                     'assets/images/bt_forward.png',
                                     width: buttonSize,
@@ -166,8 +159,7 @@ class ModeGamepadPage extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     GestureDetector(
-                                      onTap: () {
-                                      },
+                                      onTap: () {},
                                       child: Image.asset(
                                         'assets/images/bt_light.png',
                                         width: buttonSize,
@@ -176,8 +168,7 @@ class ModeGamepadPage extends StatelessWidget {
                                     ),
                                     SizedBox(width: buttonSize),
                                     GestureDetector(
-                                      onTap: () {
-                                      },
+                                      onTap: () {},
                                       child: Image.asset(
                                         'assets/images/bt_music.png',
                                         width: buttonSize,

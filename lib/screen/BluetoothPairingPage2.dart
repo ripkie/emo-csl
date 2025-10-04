@@ -4,6 +4,8 @@ import 'package:permission_handler/permission_handler.dart';
 import 'ChooseMode.dart';
 
 class BluetoothPage extends StatefulWidget {
+  const BluetoothPage({super.key});
+
   @override
   _BluetoothPageState createState() => _BluetoothPageState();
 }
@@ -39,7 +41,8 @@ class _BluetoothPageState extends State<BluetoothPage> {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text(
-              "Izin Bluetooth dan lokasi diperlukan untuk menggunakan aplikasi"),
+            "Izin Bluetooth dan lokasi diperlukan untuk menggunakan aplikasi",
+          ),
         ),
       );
     }
@@ -50,8 +53,7 @@ class _BluetoothPageState extends State<BluetoothPage> {
 
     final combined = [
       ...scannedDevices,
-      ...connectedDevices
-          .where((c) => !scannedIds.contains(c.remoteId))
+      ...connectedDevices.where((c) => !scannedIds.contains(c.remoteId)),
     ];
 
     setState(() {
@@ -70,8 +72,9 @@ class _BluetoothPageState extends State<BluetoothPage> {
 
     FlutterBluePlus.scanResults.listen((results) {
       for (ScanResult r in results) {
-        if (!scannedDevices
-            .any((existing) => existing.device.remoteId == r.device.remoteId)) {
+        if (!scannedDevices.any(
+          (existing) => existing.device.remoteId == r.device.remoteId,
+        )) {
           scannedDevices.add(r);
           print("Nama dari advertisement: ${r.advertisementData.localName}");
         }
@@ -91,27 +94,28 @@ class _BluetoothPageState extends State<BluetoothPage> {
     final mac = macAddressController.text.toLowerCase();
     final uuid = uuidController.text.toLowerCase();
 
-    final filtered = displayDevices.where((deviceInfo) {
-      BluetoothDevice device;
-      String name;
+    final filtered =
+        displayDevices.where((deviceInfo) {
+          BluetoothDevice device;
+          String name;
 
-      if (deviceInfo is ScanResult) {
-        device = deviceInfo.device;
-        name = deviceInfo.advertisementData.localName.toLowerCase();
-      } else if (deviceInfo is BluetoothDevice) {
-        device = deviceInfo;
-        name = device.platformName.toLowerCase();
-      } else {
-        return false;
-      }
+          if (deviceInfo is ScanResult) {
+            device = deviceInfo.device;
+            name = deviceInfo.advertisementData.localName.toLowerCase();
+          } else if (deviceInfo is BluetoothDevice) {
+            device = deviceInfo;
+            name = device.platformName.toLowerCase();
+          } else {
+            return false;
+          }
 
-      final address = device.remoteId.str.toLowerCase();
-      final deviceUuid = device.remoteId.str.toLowerCase();
+          final address = device.remoteId.str.toLowerCase();
+          final deviceUuid = device.remoteId.str.toLowerCase();
 
-      return name.contains(identity) ||
-          address.contains(mac) ||
-          deviceUuid.contains(uuid);
-    }).toList();
+          return name.contains(identity) ||
+              address.contains(mac) ||
+              deviceUuid.contains(uuid);
+        }).toList();
 
     setState(() {
       displayDevices = filtered;
@@ -196,10 +200,14 @@ class _BluetoothPageState extends State<BluetoothPage> {
                         width: buttonWidth,
                         child: ElevatedButton.icon(
                           onPressed: searchDevices,
-                          icon: const Icon(Icons.search,
-                              color: Color(0xFFEFCB13)),
-                          label: const Text("CARI",
-                              style: TextStyle(color: Color(0xFFCEE6F2))),
+                          icon: const Icon(
+                            Icons.search,
+                            color: Color(0xFFEFCB13),
+                          ),
+                          label: const Text(
+                            "CARI",
+                            style: TextStyle(color: Color(0xFFCEE6F2)),
+                          ),
                           style: ElevatedButton.styleFrom(
                             backgroundColor: const Color(0xFF770606),
                           ),
@@ -219,10 +227,12 @@ class _BluetoothPageState extends State<BluetoothPage> {
                         width: buttonWidth,
                         child: ElevatedButton(
                           onPressed: scanDevices,
-                          child: const Text("PINDAI SEKARANG",
-                              style: TextStyle(color: Color(0xFFCEE6F2))),
                           style: ElevatedButton.styleFrom(
                             backgroundColor: const Color(0xFF770606),
+                          ),
+                          child: const Text(
+                            "PINDAI SEKARANG",
+                            style: TextStyle(color: Color(0xFFCEE6F2)),
                           ),
                         ),
                       ),
@@ -233,44 +243,45 @@ class _BluetoothPageState extends State<BluetoothPage> {
             ),
             Expanded(
               child: ListView.builder(
-                  itemCount: displayDevices.length,
-                  itemBuilder: (context, index) {
-                    final item = displayDevices[index];
-                    BluetoothDevice? device;
-                    String name = "";
+                itemCount: displayDevices.length,
+                itemBuilder: (context, index) {
+                  final item = displayDevices[index];
+                  BluetoothDevice? device;
+                  String name = "";
 
-                    if (item is ScanResult) {
-                      device = item.device;
-                      name = item.advertisementData.localName;
-                    } else if (item is BluetoothDevice) {
-                      device = item;
-                      name = device.platformName;
-                    } else {
-                      return const SizedBox();
-                    }
-                    return Card(
-                      margin: const EdgeInsets.symmetric(vertical: 5),
-                      child: ListTile(
-                        title: Text(name.isNotEmpty ? name : "(Tanpa Nama)"),
-                        subtitle: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text("MAC Address: ${device.remoteId.str}"),
-                            Text("UUID: ${device.remoteId.str}"),
-                          ],
-                        ),
-                        trailing: ElevatedButton(
-                          onPressed: () => connectToDevice(device!),
-                          child: const Text("Connect"),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xFF770606),
-                            foregroundColor: const Color(0xFFCEE6F2),
-                          ),
-                        ),
+                  if (item is ScanResult) {
+                    device = item.device;
+                    name = item.advertisementData.localName;
+                  } else if (item is BluetoothDevice) {
+                    device = item;
+                    name = device.platformName;
+                  } else {
+                    return const SizedBox();
+                  }
+                  return Card(
+                    margin: const EdgeInsets.symmetric(vertical: 5),
+                    child: ListTile(
+                      title: Text(name.isNotEmpty ? name : "(Tanpa Nama)"),
+                      subtitle: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("MAC Address: ${device.remoteId.str}"),
+                          Text("UUID: ${device.remoteId.str}"),
+                        ],
                       ),
-                    );
-                  }),
-            )
+                      trailing: ElevatedButton(
+                        onPressed: () => connectToDevice(device!),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xFF770606),
+                          foregroundColor: const Color(0xFFCEE6F2),
+                        ),
+                        child: const Text("Connect"),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
           ],
         ),
       ),

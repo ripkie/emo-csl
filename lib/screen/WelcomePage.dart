@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'BluetoothPairingPage1.dart';
 
 class WelcomePage extends StatelessWidget {
+  const WelcomePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,10 +55,7 @@ class WelcomePage extends StatelessWidget {
             child: Text(
               "siap jadi si\npaling robotik?",
               textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 30,
-                color: Color(0xFF373739),
-              ),
+              style: TextStyle(fontSize: 30, color: Color(0xFF373739)),
             ),
           ),
 

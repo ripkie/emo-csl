@@ -4,7 +4,7 @@ import 'ModeGamepad.dart';
 class ModeClassicPage extends StatefulWidget {
   final String deviceName;
 
-  ModeClassicPage({Key? key, required this.deviceName}) : super(key: key);
+  const ModeClassicPage({super.key, required this.deviceName});
 
   @override
   _ModeClassicPageState createState() => _ModeClassicPageState();
@@ -24,7 +24,8 @@ class _ModeClassicPageState extends State<ModeClassicPage> {
             Future.microtask(() {
               Navigator.of(context).pushReplacement(
                 MaterialPageRoute(
-                  builder: (_) => ModeGamepadPage(deviceName: widget.deviceName),
+                  builder:
+                      (_) => ModeGamepadPage(deviceName: widget.deviceName),
                 ),
               );
             });
@@ -75,7 +76,7 @@ class _ModeClassicPageState extends State<ModeClassicPage> {
                       ),
                     ),
                     const SizedBox(height: 20),
-                    Container(
+                    SizedBox(
                       height: screenHeight * 0.8,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
